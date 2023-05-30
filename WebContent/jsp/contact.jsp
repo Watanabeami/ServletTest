@@ -9,7 +9,8 @@
 </head>
 <body>
 
-  <p style="color: skyblue">--お問い合わせフォーム--</p>
+
+ <p style="color: skyblue">--お問い合わせフォーム--</p>
 
   <form action = "select" method = "post">
   <p style="color: blue">氏名<br>
@@ -39,8 +40,6 @@
   
    <body style=" text-align: center;"></body>
    
-
-  </form>
 
 </body>
 </html>

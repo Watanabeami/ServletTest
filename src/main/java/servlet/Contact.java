@@ -37,40 +37,37 @@ public class Contact extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
+		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		
+		PrintWriter out = response.getWriter();
+		
 		try {
-		
-		String name = request.getParameter("name");
-		String review = request.getParameter("review");
-		String[] box = request.getParameterValues("box");
-		String radio = request.getParameter("radio");
-		String mail = request.getParameter("mail");
-		String work = request.getParameter("work");
+			String name = request.getParameter("name");
+			String company = request.getParameter("company");
+			String mail = request.getParameter("mail");
+			String contact = request.getParameter("contact");
+			String[] mailmg = request.getParameterValues("mailmg");
+			String radio = request.getParameter("radio");
+			
+
+			
+			request.setAttribute("name", name);
+			request.setAttribute("company", company);
+			request.setAttribute("mail", mail);
+			request.setAttribute("content", contact);
+			request.setAttribute("mailmg", mailmg);
+			request.setAttribute("radio", radio);
+			
+			if(radio.equals("Yes")) {
+					request.getRequestDispatcher("../jsp/yes.jsp").forward(request, response);
+				}else {
+					request.getRequestDispatcher("../jsp/no.jsp").forward(request, response);
+				}
+		}catch(Exception e) {
+			out.println(e);
+		}
 	
-		request.setAttribute("name", name);
-		request.setAttribute("review", review);
-		request.setAttribute("box", box);
-		request.setAttribute("radio", radio);
-		request.setAttribute("mail", mail);
-		request.setAttribute("work", work);
-		
-		request.getRequestDispatcher("/senni.jsp")
-		.forward(request, response);
-		
-	}catch(Exception e){
-		e.printStackTrace(out);
-	}
-		
-		/*out.println("<p>" + "氏名は" + name + "さんです。</p>");
-		out.println("<p>" + "会社は" + work + "です。</p>");
-		out.println("<p>" + "メールアドレスは" + mail + "です。</p>");
-		out.println("<p>" + "お問い合わせ内容は" + review + "です。</p>");*/
-		
-		
-		//out.println("<p>" + "資料請求希望は" + radio + "です。</p>");
-		
 	
 		
 		}
